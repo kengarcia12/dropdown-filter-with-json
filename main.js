@@ -51,15 +51,14 @@ $(document).ready(function(){
   for(var x in data.cars){
     cType   = data.cars[x].CarType;
     info    = data.cars[x].info;
-    option  = $("<option class='cars' />").text(cType);
-    li      = $("<li class='cars' />").text(cType);
-
     for(var y in data.cars[x].info){
-      $(".container").append(option);
-      $(".panel ul").append(li);
         year = data.cars[x].info[y].year;
         console.log(year);
     }
+    option  = $("<option class='cars' />").text(cType);
+    li  = $("<li class='cars' />").html(cType + "<br>" + "<span class='yr'>" + year + "</span>");
+    $(".container").append(option);
+    $(".panel ul").append(li);
 
 }
 
