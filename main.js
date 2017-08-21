@@ -3,64 +3,74 @@ $(document).ready(function(){
   cars: [
        {
         "CarType": "Bmw",
-        "info":[{
+        "info":{
           "year" : "2017",
-          "model": [{
-            "mType" : "sedan",
-            "mType2" : "s4"
-          }]
-        }],
+          "models" : ["sedan", "s4"]
+        },
         "carID": "bmw123"
         },
          {
         "CarType": "Mercedes",
-        "info":[{
+        "info":{
           "year" : "2016",
-          "model": [{
-            "mType" : "Maybach",
-            "mType2" : "SLS"
-          }]
-        }],
+          "models" : ["Maybach", "SLS"]
+        },
         "carID": "merc123"
          },
          {
         "CarType": "Volvo",
-        "info":[{
+        "info":{
           "year" : "2015",
-          "model": [{
-            "mType" : "XC90",
-            "mType2" : "C30"
-          }]
-        }],
+          "models" : [ "XC90","C30"]
+        },
         "carID": "vol123r"
           },
           {
         "CarType": "Ford",
-        "info":[{
+        "info":{
           "year" : "2017",
-          "model": [{
-            "mType" : "Fiesta",
-            "mType2" : "Focus"
-          }]
-        }],
+          "models": [ "Fiesta", "Focus"]
+        },
         "carID": "ford123"
           }
      ]
   };
-  var option, li, cType, info, year;
-  for(var x in data.cars){
-    cType   = data.cars[x].CarType;
-    info    = data.cars[x].info;
-    for(var y in data.cars[x].info){
-        year = data.cars[x].info[y].year;
-        console.log(year);
-    }
-    option  = $("<option class='cars' />").text(cType);
-    li  = $("<li class='cars' />").html(cType + "<br>" + "<span class='yr'>" + year + "</span>");
-    $(".container").append(option);
-    $(".panel ul").append(li);
+  var year = '';
+  var options = '';
+  var panel = '';
 
-}
+
+
+  for (var i = 0; i < data.cars.length; i++) {
+    var carType = data.cars[i].CarType;
+    var models = '';
+    var cars = data.cars[i];
+    var info = cars.info;
+
+
+    options += '<option value="'+ cars.carID+'">' + cars.CarType + '</option>';
+    for (var j = 0; j < info.models.length; j++) {
+      models += "<p> " + info.models[j] + "</p>";
+    }
+    panel += '<li data-type="'+ cars.carID +'">' + "<p> " + carType + "</p>"  + "<p> " + info.year + "</p>" + models + '</li>';
+  }
+
+
+ $(".container").append(options);
+ $(".panel ul").append(panel);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
