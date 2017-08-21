@@ -52,12 +52,20 @@ $(document).ready(function(){
     for (var j = 0; j < info.models.length; j++) {
       models += "<p> " + info.models[j] + "</p>";
     }
-    panel += '<li data-type="'+ cars.carID +'">' + "<p> " + carType + "</p>"  + "<p> " + info.year + "</p>" + models + '</li>';
+    panel += '<li data-type="'+ cars.carID +'" id="'+ cars.carID +'">' + "<p> " + carType + "</p>"  + "<p> " + info.year + "</p>" + models + '</li>';
   }
 
 
  $(".container").append(options);
  $(".panel ul").append(panel);
+ $('select').on('change', function() {
+   var mycls = $(this).val();
+   $('.panel ul li:not("#'+ mycls +'")').hide()
+   $('.panel ul li#' + mycls).show();
+   if($(this).val() == "default"){
+     $('.panel ul li').show();
+   }
+ })
 
 
 
